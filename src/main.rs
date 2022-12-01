@@ -1,4 +1,4 @@
-use std::{env, fs};
+use std::{env, fs, time::Instant};
 use crate::problem::Problem;
 use day_1::day_1::Day1;
 
@@ -27,11 +27,17 @@ fn main() {
 }
 
 fn solve_day(day: &Box<dyn Problem>) {
-    let input = read_input(day.index());
+    let input: String = read_input(day.index());
 
     print!("Day {}\t", day.index());
-    print!("\t{}\t", day.solve_part_one(&input));
-    println!("\t{}\t", day.solve_part_two(&input));
+
+    let day1_timer = Instant::now();
+    let day1_solution = day.solve_part_one(&input);
+    print!("\t{}\t({:?})\t", day1_solution, day1_timer.elapsed());
+
+    let day2_timer = Instant::now();
+    let day2_solution = day.solve_part_two(&input);
+    print!("\t{}\t({:?})\t", day2_solution, day2_timer.elapsed());
 }
 
 fn read_input(day_number: usize) -> String {
