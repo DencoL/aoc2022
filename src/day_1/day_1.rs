@@ -4,21 +4,16 @@ pub struct Day1 {}
 
 impl Problem for Day1 {
     fn solve_part_one(&self, input: &str) -> usize {
-        return collect_callories(input.lines().collect())
-            .iter()
-            .map(|v| v.iter().sum())
+        return collect_callories(input)
+            .into_iter()
             .max()
             .unwrap();
     }
 
     fn solve_part_two(&self, input: &str) -> usize {
-        let mut summed: Vec<usize> = collect_callories(input.lines().collect())
-            .iter()
-            .map(|v| v.iter().sum())
-            .collect();
-
+        let mut summed: Vec<usize> = collect_callories(input);
         summed.sort_by(|a, b| b.cmp(a));
-
+        
         return summed.iter().take(3).sum::<usize>();
     }
 
@@ -27,20 +22,10 @@ impl Problem for Day1 {
     }
 }
 
-fn collect_callories(input: Vec<&str>) -> Vec<Vec<usize>> {
-    let mut values: Vec<Vec<usize>> = vec![vec![]];
-    let mut index = 0;
-    for s in input.into_iter() {
-        if s == "" {
-            index += 1;
-            values.push(vec![]);
-            continue;
-        }
-
-        values[index].push(s.parse::<usize>().unwrap());
-    }
-
-    return values;
+fn collect_callories(input: &str) -> Vec<usize> {
+    return input.split("\r\n\r\n")
+        .map(|line| line.split("\r\n").flat_map(|n| n.parse::<usize>()).sum())
+        .collect();
 }
 
 #[cfg(test)]
@@ -51,20 +36,7 @@ mod tests {
 
     #[test]
     fn part_one_sample_1_input() {
-        let input = "1000
-2000
-3000
-
-4000
-
-5000
-6000
-
-7000
-8000
-9000
-
-10000";
+        let input = "1000\r\n2000\r\n3000\r\n\r\n4000\r\n\r\n5000\r\n6000\r\n\r\n7000\r\n8000\r\n9000\r\n\r\n10000";
         let day = Day1{};
 
         let result = day.solve_part_one(&input);
@@ -74,22 +46,7 @@ mod tests {
 
     #[test]
     fn part_one_sample_2_input() {
-        let input = "1000
-2000
-3000
-
-4000
-
-5000
-6000
-
-7000
-8000
-9000
-
-10000
-
-50000";
+        let input = "1000\r\n2000\r\n3000\r\n\r\n4000\r\n\r\n5000\r\n6000\r\n\r\n7000\r\n8000\r\n9000\r\n\r\n10000\r\n\r\n50000";
         let day = Day1{};
 
         let result = day.solve_part_one(&input);
@@ -109,20 +66,7 @@ mod tests {
 
     #[test]
     fn part_two_sample_input() {
-        let input = "1000
-2000
-3000
-
-4000
-
-5000
-6000
-
-7000
-8000
-9000
-
-10000";
+        let input = "1000\r\n2000\r\n3000\r\n\r\n4000\r\n\r\n5000\r\n6000\r\n\r\n7000\r\n8000\r\n9000\r\n\r\n10000";
         let day = Day1{};
 
         let result = day.solve_part_two(&input);

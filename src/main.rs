@@ -10,9 +10,9 @@ fn main() {
     let days: Vec<Box<dyn Problem>> = vec![
         Box::new(Day1 {}),
     ];
-
+    
     let args: Vec<String> = env::args().collect();
-
+    
     if args.len() < 2 {
         days.iter().for_each(|day| solve_day(day));
     } else {
@@ -21,7 +21,7 @@ fn main() {
             .into_iter()
             .filter(|day| day.index() == day_index)
             .collect::<Vec<Box<dyn Problem>>>()[0];
-
+    
         solve_day(&day);
     }
 }
