@@ -4,21 +4,7 @@ pub struct Day1 {}
 
 impl Problem for Day1 {
     fn solve_part_one(&self, input: &str) -> usize {
-        let split: Vec<&str> = input.lines().collect();
-
-        let mut values: Vec<Vec<usize>> = vec![vec![]];
-        let mut index = 0;
-        for s in split.into_iter() {
-            if s == "" {
-                index += 1;
-                values.push(vec![]);
-                continue;
-            }
-
-            values[index].push(s.parse::<usize>().unwrap());
-        }
-
-        return values
+        return collect_callories(input.lines().collect())
             .iter()
             .map(|v| v.iter().sum())
             .max()
@@ -26,21 +12,7 @@ impl Problem for Day1 {
     }
 
     fn solve_part_two(&self, input: &str) -> usize {
-        let split: Vec<&str> = input.lines().collect();
-
-        let mut values: Vec<Vec<usize>> = vec![vec![]];
-        let mut index = 0;
-        for s in split.into_iter() {
-            if s == "" {
-                index += 1;
-                values.push(vec![]);
-                continue;
-            }
-
-            values[index].push(s.parse::<usize>().unwrap());
-        }
-
-        let mut summed: Vec<usize> = values
+        let mut summed: Vec<usize> = collect_callories(input.lines().collect())
             .iter()
             .map(|v| v.iter().sum())
             .collect();
@@ -53,6 +25,22 @@ impl Problem for Day1 {
     fn index(&self) -> usize {
         return 1;
     }
+}
+
+fn collect_callories(input: Vec<&str>) -> Vec<Vec<usize>> {
+    let mut values: Vec<Vec<usize>> = vec![vec![]];
+    let mut index = 0;
+    for s in input.into_iter() {
+        if s == "" {
+            index += 1;
+            values.push(vec![]);
+            continue;
+        }
+
+        values[index].push(s.parse::<usize>().unwrap());
+    }
+
+    return values;
 }
 
 #[cfg(test)]
@@ -149,6 +137,6 @@ mod tests {
 
         let result = day.solve_part_two(&input);
 
-        assert_eq!(result, 74198);
+        assert_eq!(result, 209914);
     }
 }
