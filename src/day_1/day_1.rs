@@ -20,6 +20,10 @@ impl Problem for Day1 {
     fn index(&self) -> usize {
         return 1;
     }
+
+    fn name(&self) -> String {
+        return String::from("Calories count")
+    }
 }
 
 fn collect_callories(input: &str) -> Vec<usize> {

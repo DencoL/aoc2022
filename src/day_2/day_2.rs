@@ -24,6 +24,10 @@ impl Problem for Day2 {
     fn index(&self) -> usize {
         return 2;
     }
+
+    fn name(&self) -> String {
+        return String::from("Rock Paper Scissors");
+    }
 }
 
 fn play_game(input: &str, get_my_play: fn(&str, Play) -> Play) -> u64 {

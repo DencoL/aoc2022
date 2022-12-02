@@ -16,6 +16,11 @@ fn main() {
     
     let args: Vec<String> = env::args().collect();
     
+    println!(
+        "{0: <3} | {1: <25} | {2: <20} | {3: <20}",
+        "", "Day", "Part 1", "Part 2"
+    );
+
     if args.len() < 2 {
         days.iter().for_each(|day| solve_day(day));
     } else {
@@ -32,15 +37,11 @@ fn main() {
 fn solve_day(day: &Box<dyn Problem>) {
     let input: String = read_input(day.index());
 
-    print!("Day {}\t", day.index());
-
-    let day1_timer = Instant::now();
-    let day1_solution = day.solve_part_one(&input);
-    print!("\t{} ({:?})\t", day1_solution, day1_timer.elapsed());
-
-    let day2_timer = Instant::now();
-    let day2_solution = day.solve_part_two(&input);
-    println!("\t{} ({:?})\t", day2_solution, day2_timer.elapsed());
+    println!("{0: <3} | {1: <25} | {2: <20} | {3: <20}",
+             day.index(),
+             day.name(),
+             day.solve_part_one(&input),
+             day.solve_part_two(&input));
 }
 
 fn read_input(day_number: usize) -> String {
