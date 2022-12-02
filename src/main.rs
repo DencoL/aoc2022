@@ -1,14 +1,17 @@
 use std::{env, fs, time::Instant};
 use crate::problem::Problem;
 use day_1::day_1::Day1;
+use day_2::day_2::Day2;
 
 mod problem;
-mod day_1;
 mod utils;
+mod day_1;
+mod day_2;
 
 fn main() {
     let days: Vec<Box<dyn Problem>> = vec![
         Box::new(Day1 {}),
+        Box::new(Day2 {}),
     ];
     
     let args: Vec<String> = env::args().collect();
@@ -37,7 +40,7 @@ fn solve_day(day: &Box<dyn Problem>) {
 
     let day2_timer = Instant::now();
     let day2_solution = day.solve_part_two(&input);
-    print!("\t{}\t({:?})\t", day2_solution, day2_timer.elapsed());
+    println!("\t{}\t({:?})\t", day2_solution, day2_timer.elapsed());
 }
 
 fn read_input(day_number: usize) -> String {
