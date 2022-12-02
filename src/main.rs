@@ -36,11 +36,11 @@ fn solve_day(day: &Box<dyn Problem>) {
 
     let day1_timer = Instant::now();
     let day1_solution = day.solve_part_one(&input);
-    print!("\t{}\t({:?})\t", day1_solution, day1_timer.elapsed());
+    print!("\t{} ({:?})\t", day1_solution, day1_timer.elapsed());
 
     let day2_timer = Instant::now();
     let day2_solution = day.solve_part_two(&input);
-    println!("\t{}\t({:?})\t", day2_solution, day2_timer.elapsed());
+    println!("\t{} ({:?})\t", day2_solution, day2_timer.elapsed());
 }
 
 fn read_input(day_number: usize) -> String {
