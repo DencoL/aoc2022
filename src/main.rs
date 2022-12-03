@@ -1,17 +1,20 @@
-use std::{env, fs, time::Instant};
+use std::{env, fs};
 use crate::problem::Problem;
 use day_1::day_1::Day1;
 use day_2::day_2::Day2;
+use day_3::day_3::Day3;
 
 mod problem;
 mod utils;
 mod day_1;
 mod day_2;
+mod day_3;
 
 fn main() {
     let days: Vec<Box<dyn Problem>> = vec![
         Box::new(Day1 {}),
         Box::new(Day2 {}),
+        Box::new(Day3 {}),
     ];
     
     let args: Vec<String> = env::args().collect();
