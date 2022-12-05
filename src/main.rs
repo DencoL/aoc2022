@@ -3,18 +3,24 @@ use crate::problem::Problem;
 use day_1::day_1::Day1;
 use day_2::day_2::Day2;
 use day_3::day_3::Day3;
+use day_4::day_4::Day4;
+use day_5::day_5::Day5;
 
 mod problem;
 mod utils;
 mod day_1;
 mod day_2;
 mod day_3;
+mod day_4;
+mod day_5;
 
 fn main() {
     let days: Vec<Box<dyn Problem>> = vec![
         Box::new(Day1 {}),
         Box::new(Day2 {}),
         Box::new(Day3 {}),
+        Box::new(Day4 {}),
+        Box::new(Day5 {}),
     ];
     
     let args: Vec<String> = env::args().collect();
