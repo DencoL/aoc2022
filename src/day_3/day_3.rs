@@ -4,7 +4,7 @@ use std::collections::HashSet;
 pub struct Day3 {}
 
 impl Problem for Day3 {
-    fn solve_part_one(&self, input: &str) -> usize {
+    fn solve_part_one(&self, input: &str) -> String {
         let mut common_items: Vec<char> = vec![];
 
         for rucksack in input.lines() {
@@ -21,10 +21,10 @@ impl Problem for Day3 {
             }
         }
 
-        return get_items_priority_sum(common_items) as usize;
+        return get_items_priority_sum(common_items).to_string();
     }
 
-    fn solve_part_two(&self, input: &str) -> usize {
+    fn solve_part_two(&self, input: &str) -> String {
         let lines = input.lines().collect::<Vec<&str>>();
         let mut groups: Vec<Vec<&str>> = vec![];
 
@@ -61,7 +61,7 @@ impl Problem for Day3 {
             }
         }
 
-        return get_items_priority_sum(common_items) as usize;
+        return get_items_priority_sum(common_items).to_string();
     }
 
     fn index(&self) -> usize {
@@ -108,7 +108,7 @@ CrZsJsPPZsGzwwsLwLmpwMDw";
 
         let result = day.solve_part_one(&input);
 
-        assert_eq!(result, 157);
+        assert_eq!(result, "157");
     }
 
     #[test]
@@ -118,7 +118,7 @@ CrZsJsPPZsGzwwsLwLmpwMDw";
 
         let result = day.solve_part_one(&input);
 
-        assert_eq!(result, 8153);
+        assert_eq!(result, "8153");
     }
 
     #[test]
@@ -134,7 +134,7 @@ CrZsJsPPZsGzwwsLwLmpwMDw";
 
         let result = day.solve_part_two(&input);
 
-        assert_eq!(result, 70);
+        assert_eq!(result, "70");
     }
 
     #[test]
@@ -144,6 +144,6 @@ CrZsJsPPZsGzwwsLwLmpwMDw";
 
         let result = day.solve_part_two(&input);
 
-        assert_eq!(result, 2342);
+        assert_eq!(result, "2342");
     }
 }

@@ -4,12 +4,12 @@ use crate::problem::Problem;
 pub struct Day6 {}
 
 impl Problem for Day6 {
-    fn solve_part_one(&self, input: &str) -> usize {
-        return find_marker_start(&input, 4);
+    fn solve_part_one(&self, input: &str) -> String {
+        return find_marker_start(&input, 4).to_string();
     }
 
-    fn solve_part_two(&self, input: &str) -> usize {
-        return find_marker_start(&input, 14)
+    fn solve_part_two(&self, input: &str) -> String {
+        return find_marker_start(&input, 14).to_string();
     }
 
     fn index(&self) -> usize {
@@ -41,12 +41,12 @@ mod tests {
     use test_case::test_case;
     use super::*;
 
-    #[test_case("mjqjpqmgbljsphdztnvjfqwrcgsmlb", 7)]
-    #[test_case("bvwbjplbgvbhsrlpgdmjqwftvncz", 5)]
-    #[test_case("nppdvjthqldpwncqszvftbrmjlhg", 6)]
-    #[test_case("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg", 10)]
-    #[test_case("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw", 11)]
-    fn part_one_sample_input(input: &str, expected_result: usize) {
+    #[test_case("mjqjpqmgbljsphdztnvjfqwrcgsmlb", "7")]
+    #[test_case("bvwbjplbgvbhsrlpgdmjqwftvncz", "5")]
+    #[test_case("nppdvjthqldpwncqszvftbrmjlhg", "6")]
+    #[test_case("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg", "10")]
+    #[test_case("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw", "11")]
+    fn part_one_sample_input(input: &str, expected_result: &str) {
         let day = Day6{};
 
         let result = day.solve_part_one(&input);
@@ -61,15 +61,15 @@ mod tests {
 
         let result = day.solve_part_one(&input);
 
-        assert_eq!(result, 1723);
+        assert_eq!(result, "1723");
     }
 
-    #[test_case("mjqjpqmgbljsphdztnvjfqwrcgsmlb", 19)]
-    #[test_case("bvwbjplbgvbhsrlpgdmjqwftvncz", 23)]
-    #[test_case("nppdvjthqldpwncqszvftbrmjlhg", 23)]
-    #[test_case("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg", 29)]
-    #[test_case("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw", 26)]
-    fn part_two_sample_input(input: &str, expected_result: usize) {
+    #[test_case("mjqjpqmgbljsphdztnvjfqwrcgsmlb", "19")]
+    #[test_case("bvwbjplbgvbhsrlpgdmjqwftvncz", "23")]
+    #[test_case("nppdvjthqldpwncqszvftbrmjlhg", "23")]
+    #[test_case("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg", "29")]
+    #[test_case("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw", "26")]
+    fn part_two_sample_input(input: &str, expected_result: &str) {
         let day = Day6{};
 
         let result = day.solve_part_two(&input);
@@ -84,6 +84,6 @@ mod tests {
 
         let result = day.solve_part_two(&input);
 
-        assert_eq!(result, 3708);
+        assert_eq!(result, "3708");
     }
 }

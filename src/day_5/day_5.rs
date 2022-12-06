@@ -4,7 +4,7 @@ use crate::problem::Problem;
 pub struct Day5 {}
 
 impl Problem for Day5 {
-    fn solve_part_one(&self, input: &str) -> usize {
+    fn solve_part_one(&self, input: &str) -> String {
         let lines: Vec<&str> = input.lines().collect();
 
         let mut stacks_count = 0;
@@ -41,8 +41,6 @@ impl Problem for Day5 {
                 .split(" ")
                 .map(|v| String::from(v))
                 .collect();
-
-            // println!("{:?}", items);
 
             for (i, item) in items.into_iter().enumerate() {
                 if item == "" {
@@ -88,12 +86,10 @@ impl Problem for Day5 {
             movement_index += 1;
         }
 
-        // print_stacks(&stacks);
-
-        return 0;
+        return stacks.iter().map(|v| v.last().unwrap().clone()).collect();
     }
 
-    fn solve_part_two(&self, input: &str) -> usize {
+    fn solve_part_two(&self, input: &str) -> String {
         let lines: Vec<&str> = input.lines().collect();
 
         let mut stacks_count = 0;
@@ -130,8 +126,6 @@ impl Problem for Day5 {
                 .split(" ")
                 .map(|v| String::from(v))
                 .collect();
-
-            // println!("{:?}", items);
 
             for (i, item) in items.into_iter().enumerate() {
                 if item == "" {
@@ -183,10 +177,7 @@ impl Problem for Day5 {
             movement_index += 1;
         }
 
-        print_stacks(&stacks);
-        println!();
-
-        return 0;
+        return stacks.iter().map(|v| v.last().unwrap().clone()).collect();
     }
 
     fn index(&self) -> usize {
@@ -198,67 +189,51 @@ impl Problem for Day5 {
     }
 }
 
-fn print_stacks(stacks: &Vec<Vec<String>>) {
-    for stack in stacks {
-        println!("{:?}", stack);
-    }
-}
-
 #[cfg(test)]
 mod tests {
+    use std::fs;
+
     use crate::read_input;
 
     use super::*;
 
     #[test]
     fn part_one_sample_input() {
-        let input = "2-4,6-8
-2-3,4-5
-5-7,7-9
-2-8,3-7
-6-6,4-6
-2-6,4-8";
-
+        let input = fs::read_to_string("src/day_5/day_5_sample.txt").unwrap();
         let day = Day5{};
 
         let result = day.solve_part_one(&input);
 
-        assert_eq!(result, 2);
+        assert_eq!(result, "CMZ");
     }
 
-    // #[test]
+    #[test]
     fn part_one_my_input() {
-        let input = read_input(3);
+        let input = read_input(5);
         let day = Day5{};
 
         let result = day.solve_part_one(&input);
 
-        assert_eq!(result, 8153);
+        assert_eq!(result, "SHQWSRBDL");
     }
 
-    // #[test]
+    #[test]
     fn part_two_sample_input() {
-        let input = "vJrwpWtwJgWrhcsFMMfFFhFp
-jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
-PmmdzqPrVvPwwTWBwg
-wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
-ttgJtRGJQctTZtZT
-CrZsJsPPZsGzwwsLwLmpwMDw";
-
+        let input = fs::read_to_string("src/day_5/day_5_sample.txt").unwrap();
         let day = Day5{};
 
         let result = day.solve_part_two(&input);
 
-        assert_eq!(result, 70);
+        assert_eq!(result, "MCD");
     }
 
-    // #[test]
+    #[test]
     fn part_two_my_input() {
-        let input = read_input(3);
+        let input = read_input(5);
         let day = Day5{};
 
         let result = day.solve_part_two(&input);
 
-        assert_eq!(result, 2342);
+        assert_eq!(result, "CDTQZHBRS");
     }
 }

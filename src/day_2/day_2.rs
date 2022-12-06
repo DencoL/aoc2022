@@ -5,11 +5,11 @@ use super::play::{Play, ExpectedGameResult};
 pub struct Day2 {}
 
 impl Problem for Day2 {
-    fn solve_part_one(&self, input: &str) -> usize {
-        return play_game(input, |play_identifier, _| Play::from_str(play_identifier).unwrap()) as usize;
+    fn solve_part_one(&self, input: &str) -> String {
+        return play_game(input, |play_identifier, _| Play::from_str(play_identifier).unwrap()).to_string();
     }
 
-    fn solve_part_two(&self, input: &str) -> usize {
+    fn solve_part_two(&self, input: &str) -> String {
         return play_game(input, |expected_game_result_identifier, elf_play| {
             let expected_game_result = ExpectedGameResult::from_str(expected_game_result_identifier);
 
@@ -18,7 +18,7 @@ impl Problem for Day2 {
                 ExpectedGameResult::Draw => elf_play,
                 ExpectedGameResult::MyWin => elf_play.loses_to()
             }
-        }) as usize;
+        }).to_string();
     }
 
     fn index(&self) -> usize {
@@ -69,7 +69,7 @@ C Z";
 
         let result = day.solve_part_one(&input);
 
-        assert_eq!(result, 15);
+        assert_eq!(result, "15");
     }
 
     #[test]
@@ -79,7 +79,7 @@ C Z";
 
         let result = day.solve_part_one(&input);
 
-        assert_eq!(result, 14375);
+        assert_eq!(result, "14375");
     }
 
     #[test]
@@ -91,7 +91,7 @@ C Z";
 
         let result = day.solve_part_two(&input);
 
-        assert_eq!(result, 12);
+        assert_eq!(result, "12");
     }
 
     #[test]
@@ -101,6 +101,6 @@ C Z";
 
         let result = day.solve_part_two(&input);
 
-        assert_eq!(result, 10274);
+        assert_eq!(result, "10274");
     }
 }

@@ -4,16 +4,16 @@ use super::pair::Pair;
 pub struct Day4 {}
 
 impl Problem for Day4 {
-    fn solve_part_one(&self, input: &str) -> usize {
+    fn solve_part_one(&self, input: &str) -> String {
         return count_pairs(input, |first_pair, second_pair| {
             first_pair.is_inside_pair(&second_pair) || second_pair.is_inside_pair(&first_pair)
-        }) as usize;
+        }).to_string();
     }
 
-    fn solve_part_two(&self, input: &str) -> usize {
+    fn solve_part_two(&self, input: &str) -> String {
         return count_pairs(input, |first_pair, second_pair| {
             first_pair.overlaps_with_pair(&second_pair) || second_pair.overlaps_with_pair(&first_pair)
-        }) as usize;
+        }).to_string();
     }
 
     fn index(&self) -> usize {
@@ -64,7 +64,7 @@ mod tests {
 
         let result = day.solve_part_one(&input);
 
-        assert_eq!(result, 2);
+        assert_eq!(result, "2");
     }
 
     #[test]
@@ -74,7 +74,7 @@ mod tests {
 
         let result = day.solve_part_one(&input);
 
-        assert_eq!(result, 485);
+        assert_eq!(result, "485");
     }
 
     #[test]
@@ -90,7 +90,7 @@ mod tests {
 
         let result = day.solve_part_two(&input);
 
-        assert_eq!(result, 4);
+        assert_eq!(result, "4");
     }
 
     #[test]
@@ -100,6 +100,6 @@ mod tests {
 
         let result = day.solve_part_two(&input);
 
-        assert_eq!(result, 857);
+        assert_eq!(result, "857");
     }
 }

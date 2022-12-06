@@ -3,24 +3,25 @@ use crate::problem::Problem;
 pub struct Day1 {}
 
 impl Problem for Day1 {
-    fn solve_part_one(&self, input: &str) -> usize {
+    fn solve_part_one(&self, input: &str) -> String {
         return collect_callories(input)
             .into_iter()
             .max()
-            .unwrap();
+            .unwrap()
+            .to_string();
     }
-
-    fn solve_part_two(&self, input: &str) -> usize {
+    
+    fn solve_part_two(&self, input: &str) -> String {
         let mut summed: Vec<usize> = collect_callories(input);
         summed.sort_by(|a, b| b.cmp(a));
-        
-        return summed.iter().take(3).sum::<usize>();
+       
+        return summed.iter().take(3).sum::<usize>().to_string();
     }
-
+    
     fn index(&self) -> usize {
         return 1;
     }
-
+    
     fn name(&self) -> String {
         return String::from("Calories count")
     }
@@ -45,7 +46,7 @@ mod tests {
 
         let result = day.solve_part_one(&input);
 
-        assert_eq!(result, 24000);
+        assert_eq!(result, "24000");
     }
 
     #[test]
@@ -55,7 +56,7 @@ mod tests {
 
         let result = day.solve_part_one(&input);
 
-        assert_eq!(result, 50000);
+        assert_eq!(result, "50000");
     }
 
     #[test]
@@ -65,7 +66,7 @@ mod tests {
 
         let result = day.solve_part_one(&input);
 
-        assert_eq!(result, 74198);
+        assert_eq!(result, "74198");
     }
 
     #[test]
@@ -75,7 +76,7 @@ mod tests {
 
         let result = day.solve_part_two(&input);
 
-        assert_eq!(result, 45000);
+        assert_eq!(result, "45000");
     }
 
     #[test]
@@ -85,6 +86,6 @@ mod tests {
 
         let result = day.solve_part_two(&input);
 
-        assert_eq!(result, 209914);
+        assert_eq!(result, "209914");
     }
 }
