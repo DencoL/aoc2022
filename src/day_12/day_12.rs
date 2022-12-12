@@ -142,33 +142,38 @@ abdefghi";
         assert_eq!(result, 31);
     }
 
-    // #[test]
+    #[test]
     fn part_one_my_input() {
-        let input = read_input(11);
+        let input = read_input(12);
         let day = Day12 {};
 
         let result = day.solve_part_one(&input);
 
-        assert_eq!(result, 110888);
+        assert_eq!(result, 534);
     }
 
-    // #[test]
+    #[test]
     fn part_two_sample_input() {
+        let input = "Sabqponm
+abcryxxl
+accszExk
+acctuvwj
+abdefghi";
+
         let day = Day12 {};
 
-        let result =
-            day.solve_part_two(&std::fs::read_to_string("src/day_11/day_11_sample.txt").unwrap());
+        let result = day.solve_part_two(input);
 
-        assert_eq!(result, 2713310158);
+        assert_eq!(result, 29);
     }
 
-    // #[test]
+    #[test]
     fn part_two_my_input() {
-        let input = read_input(11);
+        let input = read_input(12);
         let day = Day12 {};
 
         let result = day.solve_part_two(&input);
 
-        assert_eq!(result, 25590400731);
+        assert_eq!(result, 525);
     }
 }
