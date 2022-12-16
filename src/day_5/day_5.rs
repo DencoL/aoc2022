@@ -7,52 +7,8 @@ impl Problem for Day5 {
     fn solve_part_one(&self, input: &str) -> String {
         let lines: Vec<&str> = input.lines().collect();
 
-        let mut stacks_count = 0;
-        for (i, line) in lines.iter().enumerate() {
-            if line.contains("move") {
-                let stack_numbers: Vec<u32> = lines[i - 2]
-                    .split(" ")
-                    .filter(|v| *v != "")
-                    .map(|v| v.parse().unwrap())
-                    .collect();
-                
-                stacks_count = *stack_numbers.iter().max().unwrap(); break;
-
-            }
-        }
-
-        let mut stacks: Vec<Vec<String>> = vec![];
-
-        for _ in 0..stacks_count {
-            stacks.push(vec![]);
-        }
-
-        let mut movement_index = 0;
-        loop {
-            let line = lines[movement_index];
-            if !line.contains("[") {
-                break;
-            }
-
-            let items: Vec<String> = line
-                .replace("[", "")
-                .replace("]", "")
-                .replace("    ", " ")
-                .split(" ")
-                .map(|v| String::from(v))
-                .collect();
-
-            for (i, item) in items.into_iter().enumerate() {
-                if item == "" {
-                    continue;
-                }
-
-                stacks[i].insert(0, item);
-            }
-
-            movement_index += 1;
-        }
-
+        let mut stacks: Vec<Vec<String>> = create_empty_stacks(&input);
+        let mut movement_index = fill_stacks_with_initial_values(&lines, &mut stacks);
         movement_index += 2;
 
         while movement_index != lines.len() {
@@ -92,52 +48,8 @@ impl Problem for Day5 {
     fn solve_part_two(&self, input: &str) -> String {
         let lines: Vec<&str> = input.lines().collect();
 
-        let mut stacks_count = 0;
-        for (i, line) in lines.iter().enumerate() {
-            if line.contains("move") {
-                let stack_numbers: Vec<u32> = lines[i - 2]
-                    .split(" ")
-                    .filter(|v| *v != "")
-                    .map(|v| v.parse().unwrap())
-                    .collect();
-                
-                stacks_count = *stack_numbers.iter().max().unwrap(); break;
-
-            }
-        }
-
-        let mut stacks: Vec<Vec<String>> = vec![];
-
-        for _ in 0..stacks_count {
-            stacks.push(vec![]);
-        }
-
-        let mut movement_index = 0;
-        loop {
-            let line = lines[movement_index];
-            if !line.contains("[") {
-                break;
-            }
-
-            let items: Vec<String> = line
-                .replace("[", "")
-                .replace("]", "")
-                .replace("    ", " ")
-                .split(" ")
-                .map(|v| String::from(v))
-                .collect();
-
-            for (i, item) in items.into_iter().enumerate() {
-                if item == "" {
-                    continue;
-                }
-
-                stacks[i].insert(0, item);
-            }
-
-            movement_index += 1;
-        }
-
+        let mut stacks: Vec<Vec<String>> = create_empty_stacks(&input);
+        let mut movement_index = fill_stacks_with_initial_values(&lines, &mut stacks);
         movement_index += 2;
 
         while movement_index != lines.len() {
@@ -187,6 +99,63 @@ impl Problem for Day5 {
     fn name(&self) -> String {
         return String::from("Supply Stacks");
     }
+}
+
+fn create_empty_stacks(input: &str) -> Vec<Vec<String>> {
+    let lines: Vec<&str> = input.lines().collect();
+
+    let mut stacks_count = 0;
+    for (i, line) in lines.iter().enumerate() {
+        if line.contains("move") {
+            let stack_numbers: Vec<u32> = lines[i - 2]
+                .split(" ")
+                .filter(|v| *v != "")
+                .map(|v| v.parse().unwrap())
+                .collect();
+
+            stacks_count = *stack_numbers.iter().max().unwrap(); break;
+
+        }
+    }
+
+    let mut stacks: Vec<Vec<String>> = vec![];
+
+    for _ in 0..stacks_count {
+        stacks.push(vec![]);
+    }
+
+    return stacks;
+}
+
+fn fill_stacks_with_initial_values(lines: &Vec<&str>, stacks: &mut Vec<Vec<String>>) -> usize {
+    let mut movement_index = 0;
+
+    loop {
+        let line = lines[movement_index];
+        if !line.contains("[") {
+            break;
+        }
+
+        let items: Vec<String> = line
+            .replace("[", "")
+            .replace("]", "")
+            .replace("    ", " ")
+            .split(" ")
+            .map(|v| String::from(v))
+            .collect();
+
+        for (i, item) in items.into_iter().enumerate() {
+            if item == "" {
+                continue;
+            }
+
+            stacks[i].insert(0, item);
+        }
+
+        movement_index += 1;
+    }
+
+    return movement_index;
 }
 
 #[cfg(test)]
