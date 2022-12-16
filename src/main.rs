@@ -6,6 +6,9 @@ use day_3::day_3::Day3;
 use day_4::day_4::Day4;
 use day_5::day_5::Day5;
 use day_6::day_6::Day6;
+use day_10::day_10::Day10;
+use day_11::day_11::Day11;
+use day_12::day_12::Day12;
 
 mod problem;
 mod utils;
@@ -15,6 +18,9 @@ mod day_3;
 mod day_4;
 mod day_5;
 mod day_6;
+mod day_10;
+mod day_11;
+mod day_12;
 
 fn main() {
     let days: Vec<Box<dyn Problem>> = vec![
@@ -24,6 +30,9 @@ fn main() {
         Box::new(Day4 {}),
         Box::new(Day5 {}),
         Box::new(Day6 {}),
+        Box::new(Day10 {}),
+        Box::new(Day11 {}),
+        Box::new(Day12 {}),
     ];
     
     let args: Vec<String> = env::args().collect();
