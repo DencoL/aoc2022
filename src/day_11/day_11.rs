@@ -6,14 +6,14 @@ use super::monkey::Monkey;
 pub struct Day11 {}
 
 impl Problem for Day11 {
-    fn solve_part_one(&self, input: &str) -> usize {
-        return solve(&collect_monkeys(input), 20, |i| i / 3);
+    fn solve_part_one(&self, input: &str) -> String {
+        return solve(&collect_monkeys(input), 20, |i| i / 3).to_string();
     }
 
-    fn solve_part_two(&self, input: &str) -> usize {
+    fn solve_part_two(&self, input: &str) -> String {
         let monkeys = collect_monkeys(input);
         let modulos: u64 = monkeys.iter().map(|m| m.test_number).product();
-        return solve(&monkeys, 10_000, |i| i % modulos);
+        return solve(&monkeys, 10_000, |i| i % modulos).to_string();
     }
 
     fn index(&self) -> usize {
@@ -77,7 +77,7 @@ mod tests {
 
         let result = day.solve_part_one(&std::fs::read_to_string("src/day_11/day_11_sample.txt").unwrap());
 
-        assert_eq!(result, 10605);
+        assert_eq!(result, "10605");
     }
 
     #[test]
@@ -87,7 +87,7 @@ mod tests {
 
         let result = day.solve_part_one(&input);
 
-        assert_eq!(result, 110888);
+        assert_eq!(result, "110888");
     }
 
     #[test]
@@ -96,7 +96,7 @@ mod tests {
 
         let result = day.solve_part_two(&std::fs::read_to_string("src/day_11/day_11_sample.txt").unwrap());
 
-        assert_eq!(result, 2713310158);
+        assert_eq!(result, "2713310158");
     }
 
     #[test]
@@ -106,6 +106,6 @@ mod tests {
 
         let result = day.solve_part_two(&input);
 
-        assert_eq!(result, 25590400731);
+        assert_eq!(result, "25590400731");
     }
 }

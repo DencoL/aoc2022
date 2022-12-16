@@ -7,19 +7,19 @@ pub struct Day12 {}
 type Vertex = (usize, usize);
 
 impl Problem for Day12 {
-    fn solve_part_one(&self, input: &str) -> usize {
+    fn solve_part_one(&self, input: &str) -> String {
         let (mut grid, start_point, destination_point) = build_grid(input);
         grid[start_point.0][start_point.1] = b'a';
         grid[destination_point.0][destination_point.1] = b'z';
 
         if let Some(distance) = bfs(&grid, start_point, destination_point) {
-            return distance;
+            return distance.to_string();
         }
 
-        return 0;
+        return String::from("");
     }
 
-    fn solve_part_two(&self, input: &str) -> usize {
+    fn solve_part_two(&self, input: &str) -> String {
         let (mut grid, _, destination_point) = build_grid(input);
         grid[destination_point.0][destination_point.1] = b'z';
 
@@ -39,7 +39,7 @@ impl Problem for Day12 {
             }
         }
 
-        return distances_from_all_lowest_points.into_iter().min().unwrap();
+        return distances_from_all_lowest_points.into_iter().min().unwrap().to_string();
     }
 
     fn index(&self) -> usize {
@@ -139,7 +139,7 @@ abdefghi";
 
         let result = day.solve_part_one(input);
 
-        assert_eq!(result, 31);
+        assert_eq!(result, "31");
     }
 
     #[test]
@@ -149,7 +149,7 @@ abdefghi";
 
         let result = day.solve_part_one(&input);
 
-        assert_eq!(result, 534);
+        assert_eq!(result, "534");
     }
 
     #[test]
@@ -164,7 +164,7 @@ abdefghi";
 
         let result = day.solve_part_two(input);
 
-        assert_eq!(result, 29);
+        assert_eq!(result, "29");
     }
 
     #[test]
@@ -174,6 +174,6 @@ abdefghi";
 
         let result = day.solve_part_two(&input);
 
-        assert_eq!(result, 525);
+        assert_eq!(result, "525");
     }
 }
